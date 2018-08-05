@@ -1,0 +1,17 @@
+body{
+    background-image: url("../images/bg.png");
+	background-repeat: repeat;
+}
+
+.icons-size{
+    height: 60px;
+}
+
+.vertical-aling{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
