@@ -8,18 +8,16 @@ window.currentPosition = () => {
 
   const success = (pos) => {
     let crd = pos.coords;
-    console.log('Your current position is:');
-    console.log('Latitude : ' + crd.latitude);
-    console.log('Longitude: ' + crd.longitude);
-    console.log('More or less ' + crd.accuracy + ' meters.');
+    getRestaurant();
     let initialPosition = {
       lat: crd.latitude,
       lng: crd.longitude
     };
     let map = new google.maps.Map(
       document.getElementById('map'), {
-        zoom: 10,
-        center: initialPosition
+        zoom: 15,
+        center: initialPosition,
+
       });
     let marker = new google.maps.Marker({
       position: initialPosition,
@@ -32,4 +30,12 @@ window.currentPosition = () => {
   };
 
   navigator.geolocation.getCurrentPosition(success, error, options);
+};
+
+
+window.getRestaurant = () => {
+  fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=19.4047876,-99.1644084&radius=500&type=restaurant&key=AIzaSyBuz9gLAStcBB3YUGbBJdAuO8R8DH2quYs&v=3')
+    .then(result => {
+      console.log(result);
+    });
 };
