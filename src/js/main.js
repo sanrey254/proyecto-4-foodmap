@@ -8,7 +8,6 @@ window.currentPosition = () => {
 
   const success = (pos) => {
     let crd = pos.coords;
-    getRestaurant();
     let initialPosition = {
       lat: crd.latitude,
       lng: crd.longitude
@@ -34,8 +33,20 @@ window.currentPosition = () => {
 
 
 window.getRestaurant = () => {
-  fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=19.4047876,-99.1644084&radius=500&type=restaurant&key=AIzaSyBuz9gLAStcBB3YUGbBJdAuO8R8DH2quYs&v=3')
+  fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=19.4047876,-99.1644084&radius=500&type=restaurant&key=AIzaSyBuz9gLAStcBB3YUGbBJdAuO8R8DH2quYs', miInit)
     .then(result => {
       console.log(result);
+    })
+    .catch(error =>{
+      console.log('Error', error);
     });
 };
+
+var miInit = {
+  method: 'GET',
+  mode: 'no-cors',
+  cache: 'default',
+  crossDomain: true
+};
+
+getRestaurant();
