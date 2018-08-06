@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
                 <img src="../images/logo.png" alt="Logo" class="img-fluid img-size">
@@ -32,8 +32,14 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-6 col-sm-12 my-4">
+                <div id="map" style="height: 400px"></div>
+            </div>
         </div>
     </div>
+    <script src="../js/main.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuz9gLAStcBB3YUGbBJdAuO8R8DH2quYs&v=3&callback=currentPosition"></script>
+   
 </body>
 
 </html>
