@@ -28,7 +28,8 @@ window.searchRestaurant = (keyword) => {
                                     <img class="img-fluid img-thumbnail" src="${place.data().url}"
                                         alt="card image" style="height: 120px;">
                                 </p>
-                                <h4 class="card-title">${place.data().name}</h4>
+                                <h5 class="card-title">${place.data().name}</h5>
+                                <p><span class="badge badge-warning">${place.data().type}</span></p>
                                 <p>
                                 ${ranking}
                                 </p>
@@ -74,7 +75,8 @@ window.getRestaurantList = () => {
                                     <img class="img-fluid img-thumbnail" src="${place.data().url}"
                                         alt="card image" style="height: 120px;">
                                 </p>
-                                <h4 class="card-title">${place.data().name}</h4>
+                                <h5 class="card-title">${place.data().name}</h5>
+                                <p><span class="badge badge-warning">${place.data().type}</span></p>
                                 <p>
                                 ${ranking}
                                 </p>
@@ -90,4 +92,4 @@ window.getRestaurantList = () => {
     });
 };
 
-getRestaurantList();
+
