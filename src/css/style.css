@@ -1,13 +1,10 @@
-/** Vista principal, index.html **/
 .h-100v{
     height: 100vh;
 }
 
-/** Vista menu, main.html **/
 .img-size{
     width: 20%;
 }
-
 
 .btn-red{
     background-color: #a90722;

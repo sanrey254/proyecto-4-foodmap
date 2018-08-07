@@ -33,9 +33,9 @@ window.searchRestaurant = (keyword) => {
                                 <p>
                                 ${ranking}
                                 </p>
-                                <a href="#" class="btn btn-red btn-sm">
-                                    <i class="fa fa-plus"></i>
-                                </a>
+                                <button class="btn btn-red btn-sm" onclick="showRestaurantInfo(${place.id})">
+                                    <i class="fas fa-question"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -61,6 +61,22 @@ window.drawRanking = (ranking) => {
   return response;
 };
 
+window.showRestaurantInfo = (restaurantID) => {
+  db.collection('places').doc(restaurantID).get()
+    .then(result => {
+      swal({
+        title: `<strong>${result.data().name}</strong>`,
+        type: 'info',
+        html: `<p>${result.data().address}</p><p>Rango de precios: ${result.data().price}</p><p>Teléfono: ${result.data().phone}</p>`,
+        showCloseButton: true,
+        focusConfirm: false,
+        confirmButtonText:
+          ' Ordenar ahora! <i class="fas fa-utensils"></i>',
+        confirmButtonAriaLabel: 'Thumbs up, great!',
+      })
+    });
+};
+
 window.getRestaurantList = () => {
   let response = '';
   db.collection('places').orderBy('rate', 'desc').get()
@@ -80,9 +96,9 @@ window.getRestaurantList = () => {
                                 <p>
                                 ${ranking}
                                 </p>
-                                <a href="#" class="btn btn-red btn-sm">
-                                    <i class="fa fa-plus"></i>
-                                </a>
+                                <button class="btn btn-red btn-sm" onclick="showRestaurantInfo('${place.id}')">
+                                    <i class="fas fa-question"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -91,5 +107,7 @@ window.getRestaurantList = () => {
       });
     });
 };
+
+getRestaurantList();
 
 
