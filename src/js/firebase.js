@@ -1,12 +1,14 @@
-let config = {
-  apiKey: 'AIzaSyDTnRlgj3YITuH0fTWO7Qv_Cg8aCXBWH80',
-  authDomain: 'food-map-2.firebaseapp.com',
-  databaseURL: 'https://food-map-2.firebaseio.com',
-  projectId: 'food-map-2',
-  storageBucket: '',
-  messagingSenderId: '330495915253'
+window.initializeFirebase = () => {
+  firebase.initializeApp({
+    apiKey: 'AIzaSyDTnRlgj3YITuH0fTWO7Qv_Cg8aCXBWH80',
+    authDomain: 'food-map-2.firebaseapp.com',
+    databaseURL: 'https://food-map-2.firebaseio.com',
+    projectId: 'food-map-2',
+    storageBucket: '',
+    messagingSenderId: '330495915253'
+  });
 };
-firebase.initializeApp(config);
+initializeFirebase()
 let db = firebase.firestore();
 
 window.searchRestaurant = (keyword) => {
@@ -85,7 +87,7 @@ window.showRestaurantInfo = (restaurantID) => {
         confirmButtonText:
           '<span class="small-font">Ordenar ahora! <i class="fas fa-utensils"></i></span>',
         confirmButtonAriaLabel: 'Thumbs up, great!',
-      }).catch(error =>{
+      }).catch(error => {
         console.log('Error', error);
       });
     });
@@ -120,6 +122,18 @@ window.getRestaurantList = () => {
         document.getElementById('restaurant').innerHTML = response;
       });
     });
+};
+
+window.setMapMarkers = () => {
+  db.collection('places').orderBy('rate', 'desc').get()
+    .then(result => {
+      result.forEach(place =>{
+        let ranking = drawRanking(place.data().rate);
+        let marker = L.marker([place.data().location.latitude, place.data().location.longitude], { icon: mapMarker }).addTo(mymap);
+        marker.bindPopup(`<strong>${place.data().name}<strong><p class="mt-1 text-center">${ranking}</p><p class="text-center mt-1"></p><p class="text-center"><button class="btn btn-red btn-sm" onclick="showRestaurantInfo('${place.id}')"><i class="fas fa-question"></i></button></p>`).openPopup();
+      });
+    });
+  
 };
 
 getRestaurantList();
