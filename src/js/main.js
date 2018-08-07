@@ -4,5 +4,6 @@ document.getElementById('btn-search').addEventListener('click', event => {
   const keyword = document.getElementById('searching').value;
   if (keyword !== '' && keyword !== ' ') {
     searchRestaurant(keyword);
+    document.getElementById('searching').value = '';
   }
 });

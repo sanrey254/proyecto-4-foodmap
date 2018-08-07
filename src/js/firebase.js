@@ -11,6 +11,7 @@ let db = firebase.firestore();
 
 window.searchRestaurant = (keyword) => {
   let response = '';
+  let noResult = 0;
   const keywordUpperCase = keyword.toUpperCase();
   db.collection('places').get()
     .then(result => {
@@ -19,6 +20,7 @@ window.searchRestaurant = (keyword) => {
         const placeNameUpperCase = placeName.toUpperCase();
         let existKeyword = placeNameUpperCase.indexOf(keywordUpperCase);
         if (existKeyword !== -1) {
+          noResult++;
           let ranking = drawRanking(place.data().rate);
           response += `<div class="col-md-4 my-4">
                     <div class="frontside">
@@ -43,6 +45,14 @@ window.searchRestaurant = (keyword) => {
           document.getElementById('restaurant').innerHTML = response;
         }
       });
+      if (noResult === 0) {
+        swal({
+          type: 'error',
+          title: '<p class="title-font">No existen coincidencias</p>',
+          width: 300
+        });
+        getRestaurantList();
+      }
     });
 };
 
@@ -75,7 +85,9 @@ window.showRestaurantInfo = (restaurantID) => {
         confirmButtonText:
           '<span class="small-font">Ordenar ahora! <i class="fas fa-utensils"></i></span>',
         confirmButtonAriaLabel: 'Thumbs up, great!',
-      })
+      }).catch(error =>{
+        console.log('Error', error);
+      });
     });
 };
 
