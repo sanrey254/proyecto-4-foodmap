@@ -65,13 +65,15 @@ window.showRestaurantInfo = (restaurantID) => {
   db.collection('places').doc(restaurantID).get()
     .then(result => {
       swal({
-        title: `<strong>${result.data().name}</strong>`,
+        title: `<strong class="title-font">${result.data().name}</strong>`,
         type: 'info',
-        html: `<p>${result.data().address}</p><p>Rango de precios: ${result.data().price}</p><p>Teléfono: ${result.data().phone}</p>`,
+        html: `<p class="small-font">${result.data().address}</p><p class="small-font">Rango de precios: ${result.data().price}</p><p class="small-font">Teléfono: ${result.data().phone}</p>`,
         showCloseButton: true,
         focusConfirm: false,
+        width: 400,
+        padding: '2.25em',
         confirmButtonText:
-          ' Ordenar ahora! <i class="fas fa-utensils"></i>',
+          '<span class="small-font">Ordenar ahora! <i class="fas fa-utensils"></i></span>',
         confirmButtonAriaLabel: 'Thumbs up, great!',
       })
     });
