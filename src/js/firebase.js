@@ -77,7 +77,7 @@ window.showRestaurantInfo = (restaurantID) => {
       swal({
         title: `<strong class="title-font">${result.data().name}</strong>`,
         type: 'info',
-        html: `<p class="small-font">${result.data().address}</p><p class="small-font">Rango de precios: ${result.data().price}</p><p class="small-font">Teléfono: ${result.data().phone}</p>`,
+        html: `<p class="small-font"><i class="fas fa-map-marker-alt"></i> ${result.data().address}</p><p class="small-font"><i class="far fa-money-bill-alt"></i> ${result.data().price}</p><p class="small-font"><i class="fas fa-phone"></i> ${result.data().phone}</p>`,
         showCloseButton: true,
         focusConfirm: false,
         width: 400,
