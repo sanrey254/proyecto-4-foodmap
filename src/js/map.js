@@ -7,6 +7,25 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=p
   accessToken: 'pk.eyJ1Ijoic2FucmV5MjU0IiwiYSI6ImNqa2s0ZjhsdzBlaXYzcHBqdmQ2eXdjOWcifQ.82D_7oPbwvYFF2IQq1-_NQ'
 }).addTo(mymap);
 
+/*mymap.locate({
+  setView: true,
+  watch: true
+})
+  .on('locationfound', element => {
+    const mapMarker = L.marker([element.latitude, element.longitude]).bindPopup('¡Estas aqui!');
+    const circle = L.circle([element.latitude, element.longitude], element.accuracy / 2, {
+      weight: 1,
+      color: 'red',
+      fillColor: '#cacaca',
+      fillOpacity: 0.2
+    });
+    map.addLayer(mapMarker);
+    map.addLayer(circle);
+  })
+  .on('locationerror', error =>{
+    console.log('location access denied');
+  });
+*/
 const LeafIcon = L.Icon.extend({
   options: {
     iconSize: [30, 40],
